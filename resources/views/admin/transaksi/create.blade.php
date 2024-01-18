@@ -25,6 +25,12 @@
 
                 <form action="/admin/transaksi/detail/create" method="POST">
                     @csrf
+                    
+                    <input type="hidden" name="transaksi_id" value="{{ Request::segment(3) }}">
+                    <input type="hidden" name="produk_id" value="{{ $p_detail->id }}">
+                    <input type="hidden" name="produk_name" value="{{ $p_detail->name }}">
+                    <input type="hidden" name="subtotal" value="{{ $subtotal }}">
+
                     <div class="row mt-2">
                         <div class="col-md-4">
                             <label for="">Nama Produk</label>                       
@@ -90,6 +96,8 @@
                         <th>QTY</th>
                         <th>#</th>
                     </tr>
+
+                    @foreach ($transaksi_detail as $item)
                     <tr>
                         <th>1</th>
                         <th>Tanggo</th>
@@ -98,6 +106,7 @@
                             <a href=""><i class="fas fa-times"></i></a>
                         </th>
                     </tr>
+                    @endforeach
                 </table>
 
                 <a href="" class="btn btn-primary"><i class="fas fa-check"> Selesai</i></a>
